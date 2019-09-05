@@ -1,3 +1,5 @@
+
+  
 <!DOCTYPE html>
 
 <html>
@@ -7,13 +9,15 @@
           
 <title>Gold's CV</title>
 <script src="form.js"></script>
-
+ <img src="https://res.cloudinary.com/goldejy/image/upload/v1566759351/4_g7crdy.jpg" width="200px">
+    <link rel="stylesheet"href="cv.css"...>
+   
+    <script src="form.js"></script>
+     
             </head>
 <body>
 
-    <img src="https://res.cloudinary.com/goldejy/image/upload/v1566759351/4_g7crdy.jpg" width="200px">
-    <link rel="stylesheet"
-     href="CV.CSS"...>
+   
 <h1>OLADEJI WURAOLA BUKUNMI</h1>
 <p>44/56, Idi  Iroko Resettlement Area, off Mobil Estate Road, Ikota-vgc , Ajah. Lagos</p>
 <p>Email:wuraoladeji1@gmail.com.</p>
@@ -61,20 +65,15 @@ In a fast growing field that requires professionals to learn quickly and adapt t
 <hr><br>
 <h2>REFEREES</h2>
 <p>Available on Request.</p>
-</body>
-</html>
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+
+
     <title>CONTACT FORM</title>
-    <link rel="stylesheet" href="FORM.css">
-    <script src="validator.js"></script>
-</head>
-<body>
+    
+
+
 <form name="Contact Form" onsubmit="return validateForm()" action="#" method="post"> 
     <h2>Contact Form</h2>
     <div class="row">
@@ -93,149 +92,7 @@ In a fast growing field that requires professionals to learn quickly and adapt t
         <div class="error" id="mobileErr"></div>
     </div>
   
-        </div>// Defining a function to display error message
-function printError(elemId, hintMsg) {
-    document.getElementById(elemId).innerHTML = hintMsg;
-}
-	
-	
-
-// Defining a function to validate form 
-function validateForm() {
-    //
-    var name = document.contactForm.name.value;
-    var email = document.contactForm.email.value;
-    var message = document.contactForm.message.value;
-        }
-    
-    
-	// Defining error variables with a default value
-    var nameErr = emailErr = messageErr = true;
-    
-    // Validate name
-    if(name == "") {
-        printError("nameErr", "Please enter your name");
-    } else {
-        var regex = /^[a-zA-Z\s]+$/;                
-        if(regex.test(name) === false) {
-            printError("nameErr", "Please enter a valid name");
-        } else {
-            printError("nameErr", "");
-            nameErr = false;
-        }
-    }
-    
-    // Validate email address
-    if(email == "") {
-        printError("emailErr", "Please enter your email address");
-    } else {
-        // Regular expression for basic email validation
-        var regex = /^\S+@\S+\.\S+$/;
-        if(regex.test(email) === false) {
-            printError("emailErr", "Please enter a valid email address");
-        } else{
-            printError("emailErr", "");
-            emailErr = false;
-        }
-    }
-    
-    // Validate message
-    if(mobile == "") {
-        printError("messageErr", "Please enter your message");
-    } else {
-        var regex =  /^[a-zA-Z\s]+$/;
-        if(regex.test(message) === false) {
-            printError("messageErr", "Please enter your message not less than 20 words");
-        } else{
-            printError("mobileErr", "");
-            mobileErr = false;
-        }
-    }
-    
-    
-    
-    
-    
-    // Prevent the form from being submitted if there are any errors
-    if((nameErr || emailErr || messagrErr) == true) {
-       return false;
-    } else {
-        // Creating a string from input data for preview
-        var dataPreview = "You've entered the following details: \n" +
-                          "Full Name: " + name + "\n" +
-                          "Email Address: " + email + "\n" +
-                          "Message: " + message + "\n" +
-	
-	
-                          
-        
-        body {
-    font-size: 16px;
-    background: #f9f9f9;
-    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-}
-h2 {
-    text-align: center;
-    text-decoration: underline;
-}
-form {
-    width: 300px;
-    background: #fff;
-    padding: 15px 40px 40px;
-    border: 1px solid #ccc;
-    margin: 50px auto 0;
-    border-radius: 5px;
-}
-label {
-    display: block;
-    margin-bottom: 5px
-}
-label i {
-    color: #999;
-    font-size: 80%;
-}
-input, select {
-    border: 1px solid #ccc;
-    padding: 10px;
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 2px;
-}
-.row {
-    padding-bottom: 10px;
-}
-.form-inline {
-    border: 1px solid #ccc;
-    padding: 8px 10px 4px;
-    border-radius: 2px;
-}
-.form-inline label, .form-inline input {
-    display: inline-block;
-    width: auto;
-    padding-right: 15px;
-}
-.error {
-    color: red;
-    font-size: 90%;
-}
-input[type="submit"] {
-    font-size: 110%;
-    font-weight: 100;
-    background: blueviolet;
-    border-color: rgb(193, 1, 183);
-    box-shadow: 0 3px 0 #90afc9;
-    color: #fff;
-    margin-top: 10px;
-    cursor: pointer;
-}
-input[type="submit"]:hover {
-    background: #0165b6;
-}
-        // Display input data in a dialog box before submitting the form
-        alert(dataPreview);
-    }
-};
+        </div>
     </div>        
     <div class="row">
         <input type="submit" value="Submit">
