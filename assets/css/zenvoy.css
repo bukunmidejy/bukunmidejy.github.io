@@ -278,6 +278,7 @@ strong{font-weight:600}
 .media--wide{aspect-ratio:16/9}
 .media--tall{aspect-ratio:3/4}
 .media--square{aspect-ratio:1/1}
+.media--photo{aspect-ratio:3/2}
 .media-figure{margin:0}
 .media{display:block}
 .media__caption{
@@ -312,6 +313,8 @@ strong{font-weight:600}
   .grid--4 .tile{display:flex;flex-direction:column}
   .grid--4 .tile .tile__link{margin-top:auto;padding-top:1.2rem;margin-bottom:0}
 }
+.tile__media{display:block;margin-bottom:1.15rem}
+.tile__media .media__caption{margin-top:.55rem;font-size:.75rem}
 .tile__label{
   font-size:.6875rem;font-weight:500;letter-spacing:.17em;text-transform:uppercase;
   color:var(--olive);display:block;margin-bottom:.85rem;

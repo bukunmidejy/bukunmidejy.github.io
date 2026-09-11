@@ -60,17 +60,53 @@ retouched version.
 
 ## Adding photographs later
 
-**Other vehicle categories are deliberately text-led.** Executive sedans, SUVs and premium
-vehicles appear as text on the homepage and services page, with no imagery, because Zenvoy has
-no approved photographs of those vehicles yet. Do not fill those slots with stock photography or
-with pictures of the Geely: that would imply a Camry or a Prado is pictured when it is not.
+**Other vehicle categories are text-led until their photographs land.** Executive sedans, SUVs
+and premium vehicles currently appear as text on the homepage and services page. Stock
+photography is approved for these three categories, clearly presented as representative of the
+category rather than as the car a customer will get. Never use a picture of the Geely to stand
+in for a Camry or a Prado.
 
-When you photograph an actual sedan or SUV that Zenvoy can arrange:
+### Adding the three category photographs
 
-1. Save it here as `toyota-camry-exterior.jpg`, `toyota-prado-exterior.jpg` and so on.
-2. Add it to the matching tile in the "Choose the vehicle you need" grid.
-3. Write `alt` text describing that specific car, and caption it so nobody mistakes it for
-   part of an owned fleet — for example "Arranged through a Zenvoy vehicle partner."
+The page already supports them. Drop the files in and set four values — nothing else changes.
+
+1. Save the files here as:
+
+   * `category-executive-sedan.jpg`
+   * `category-suv.jpg`
+   * `category-premium.jpg`
+
+   Landscape, 3:2, 1200×800 or thereabouts, exported at quality ~80 and under 200 KB.
+
+2. In the site generator, set `image` on all four entries of `VEHICLES` — including the
+   electric one, which uses `geely-geometry-e-hero-wide.jpg`. Set them **together**: the tiles
+   render as text until every category has a photograph, because one photographed tile beside
+   three text tiles reads as a mistake rather than a decision.
+
+3. Run the images through the same editorial grade as the Geely photographs
+   (`grade()` in the build tooling). Ungraded stock will sit noticeably cooler and glossier
+   than the real car and will give itself away immediately.
+
+Each category image then carries a caption — "Representative · Camry, Accord or similar" — and a
+sentence appears under the grid automatically: *"Photographs of sedans, SUVs and premium
+vehicles show the category rather than a specific car: the exact vehicle is confirmed with your
+booking."* Both are generated, so the honesty cannot be lost by editing one file and forgetting
+another.
+
+### Choosing the stock images
+
+* **Licence:** Unsplash and Pexels both permit commercial use with no attribution. Prefer those.
+  Avoid Wikimedia Commons unless you are willing to carry the CC-BY attribution, and never
+  right-click an image out of a Google search — those are somebody's copyright.
+* **Search terms that work:** "Toyota Camry exterior", "executive sedan black", "Toyota
+  Highlander SUV", "Land Cruiser Prado", "black SUV city street".
+* **Choose photographs that could plausibly be Lagos.** Daylight, ordinary street or forecourt,
+  no snow, no alpine passes, no European plaza.
+* **Avoid:** dealership branding, showroom floors, another company's logo or livery, visible
+  number plates, heavy colour grading, motion-blur advertising shots, and anything with a
+  driver or passenger in it (a stock person implies a Zenvoy chauffeur who does not exist).
+* Match the Geely's restraint: a clean three-quarter of a parked car beats a dramatic
+  advertisement every time.
 
 ## Shooting notes
 
