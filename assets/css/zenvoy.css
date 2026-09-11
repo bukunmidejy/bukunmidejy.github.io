@@ -314,7 +314,13 @@ strong{font-weight:600}
   .grid--4 .tile .tile__link{margin-top:auto;padding-top:1.2rem;margin-bottom:0}
 }
 .tile__media{display:block;margin-bottom:1.15rem}
-.tile__media .media__caption{margin-top:.55rem;font-size:.75rem}
+/* The spacer only exists to keep a row of tiles on one baseline; stacked on a phone
+   there is no row to align to, so it would just be dead air. */
+.tile__media--none{display:none}
+@media (min-width:640px){
+  .tile__media--none{display:block;aspect-ratio:3/2;margin-bottom:calc(1.15rem + .55rem + 2.9em)}
+}
+.tile__media .media__caption{margin-top:.55rem;font-size:.75rem;min-height:2.9em}
 .tile__label{
   font-size:.6875rem;font-weight:500;letter-spacing:.17em;text-transform:uppercase;
   color:var(--olive);display:block;margin-bottom:.85rem;

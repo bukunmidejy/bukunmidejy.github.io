@@ -60,11 +60,24 @@ retouched version.
 
 ## Adding photographs later
 
-**Other vehicle categories are text-led until their photographs land.** Executive sedans, SUVs
-and premium vehicles currently appear as text on the homepage and services page. Stock
-photography is approved for these three categories, clearly presented as representative of the
-category rather than as the car a customer will get. Never use a picture of the Geely to stand
-in for a Camry or a Prado.
+**Category imagery: what is real and what is representative.**
+
+| Tile | File | Status |
+| --- | --- | --- |
+| Electric | `category-electric.jpg` | The actual car. Captioned "Geely Geometry E · the actual car". |
+| Executive sedans | `category-executive-sedan.jpg` | Stock. Captioned "Representative · Camry, Accord or similar". |
+| SUVs | `category-suv.jpg` | Stock. Captioned "Representative · Highlander, Prado or similar". |
+| Premium | — | No image yet. The tile reserves the space so the row keeps one baseline. |
+
+The captions and the sentence under the grid are **generated, not typed into each page**: add or
+remove a category image and the wording follows automatically. Never use a picture of the Geely
+to stand in for a Camry or a Prado.
+
+⚠️ **The two stock images need replacing before any paid promotion.** They appear to be
+manufacturer or motoring-press photographs rather than royalty-free stock, which is a copyright
+exposure on a commercial site. Swap them for Unsplash or Pexels equivalents (both licences allow
+commercial use with no attribution) when there is a spare ten minutes. The sedan image is also
+only 499px wide, which is soft on a high-density screen.
 
 ### Adding the three category photographs
 
