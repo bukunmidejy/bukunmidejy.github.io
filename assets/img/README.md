@@ -7,13 +7,14 @@ Every photograph on the site is a real photograph of Zenvoy's own vehicle, a whi
 
 | File | Where it appears | Shows |
 | --- | --- | --- |
-| `geely-geometry-e-front-three-quarter.jpg` | Homepage hero (preloaded) | Front three-quarter, parked in Ikoyi. Cropped at the top to keep a third-party advertising banner out of frame. |
+| `geely-geometry-e-hero-tall.jpg` | Homepage hero, 900px and wider | Front three-quarter composed for the tall desktop column: the car fills the frame, the rear runs out of frame, the neighbouring car is out of shot. |
+| `geely-geometry-e-hero-wide.jpg` | Homepage hero, phones | The same frame composed wide: the whole car, nose to tail, with the ground under it. |
 | `geely-geometry-e-front.jpg` | Homepage electric section | Straight-on front view. |
 | `geely-geometry-e-rear-three-quarter.jpg` | Electric page, left | Rear three-quarter, GEOME badge visible. |
 | `geely-geometry-e-interior-front.jpg` | **Not used on the site** | Front cabin. Held back until the protective wrapping is off the steering wheel and the car reads as in service. |
 | `geely-geometry-e-interior-rear.jpg` | Homepage, "You book Zenvoy, not a driver"; Corporate page | Rear passenger cabin: the passenger's view. The clearest picture of what a customer actually experiences. |
 | `geely-geometry-e-rear-seats.jpg` | Electric page, right | Rear bench, second angle. |
-| `geely-geometry-e-side.jpg` | Services page | Side profile in traffic. |
+| `geely-geometry-e-side.jpg` | Services page | Side detail: door, wheel and QR sticker. Cropped past the photographer's own wing mirror. |
 | `geely-geometry-e-street.jpg` | How it works page | On the road in Lagos. |
 | `og-cover.jpg` | Link preview on WhatsApp, LinkedIn, X | Typographic card, 1200×630. |
 | `apple-touch-icon.png` | Phone home-screen icon | Wordmark on charcoal. |
@@ -49,9 +50,11 @@ Natural daylight, shadows and reflections are as shot. The **three interior** ph
 completely untouched: there is no background to separate inside a car, and blurring anything
 there would mean blurring the vehicle.
 
-Two frames are also cropped, neither in a way that changes the vehicle: the hero loses a
-third-party advertising banner above the car and empty apron below it, and the rear
-three-quarter is tightened to drop sky. If you ever need the untouched originals, they are the
+**Cropping is part of the art direction, and never changes the vehicle.** The hero crops away a
+third-party advertising banner above the car, the empty apron below it and the neighbouring
+parked car; the rear three-quarter is tightened to drop sky; the side shot is cropped past the
+photographer's own wing mirror, which was the one element on the site that gave away a picture
+taken from a moving car. If you ever need the untouched originals, they are the
 files you supplied — keep a copy outside the repository, since what is committed here is the
 retouched version.
 

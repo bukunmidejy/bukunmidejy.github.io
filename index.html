@@ -30,7 +30,8 @@
 
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/zenvoy-serif-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/zenvoy-sans-latin.woff2" crossorigin>
-  <link rel="preload" as="image" href="/assets/img/geely-geometry-e-front-three-quarter.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="/assets/img/geely-geometry-e-hero-tall.jpg" media="(min-width: 900px)" fetchpriority="high">
+  <link rel="preload" as="image" href="/assets/img/geely-geometry-e-hero-wide.jpg" media="(max-width: 899px)" fetchpriority="high">
   <link rel="stylesheet" href="/assets/css/zenvoy.css">
   <script>/* Reveal-on-scroll is opt-in; if zenvoy.js never runs, undo it so nothing stays hidden. */
   document.documentElement.className+=" js";
@@ -109,7 +110,10 @@
     <div class="hero__media">
       <figure class="media-figure">
     <span class="media media--hero">
-      <img src="/assets/img/geely-geometry-e-front-three-quarter.jpg" alt="A white Geely Geometry E, the electric vehicle available through Zenvoy, parked in Ikoyi, Lagos" loading="eager" decoding="async" width="900" height="715" fetchpriority="high" style="object-position:45% 50%">
+      <picture>
+        <source media="(min-width: 900px)" srcset="/assets/img/geely-geometry-e-hero-tall.jpg" width="770" height="790">
+        <img src="/assets/img/geely-geometry-e-hero-wide.jpg" alt="A white Geely Geometry E, the electric vehicle available through Zenvoy, parked in Ikoyi, Lagos" loading="eager" decoding="async" width="870" height="655" fetchpriority="high" style="object-position:50% 62%">
+      </picture>
     </span>
   </figure>
     </div>
