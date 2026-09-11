@@ -15,7 +15,7 @@ one stylesheet, one small JavaScript file, self-hosted fonts. Hosted on GitHub P
 assets/css/zenvoy.css                        All styling (tokens at the top)
 assets/js/zenvoy.js                          Menu, sticky booking bar, reveal-on-scroll
 assets/fonts/                                Self-hosted, subset Source Serif 4 + Inter (~65 KB total)
-assets/img/                                  Imagery — see assets/img/README.md
+assets/img/                                  Photographs of the Geely Geometry E — see assets/img/README.md
 favicon.svg, favicon.png, sitemap.xml, robots.txt
 ```
 
@@ -50,9 +50,11 @@ Current messages:
 | Events | Same, plus event type and venue |
 | Corporate enquiry | Company, contact person, role, phone/email, needs, booking frequency |
 
-## Replacing the images
+## Images
 
-See `assets/img/README.md`. Keep the file names identical and nothing else needs editing.
+All photography is of Zenvoy's own Geely Geometry E. Other vehicle categories (sedans,
+SUVs, premium) are text-led until real photographs of those vehicles exist — see
+`assets/img/README.md` before adding any.
 
 ## Prices
 
