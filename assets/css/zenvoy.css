@@ -346,6 +346,11 @@ strong{font-weight:600}
   text-transform:uppercase;color:var(--olive);margin-top:.3rem;
 }
 .price-row__amt{font-family:var(--serif);font-size:1.55rem;color:var(--charcoal);white-space:nowrap}
+@media (max-width:479px){
+  /* "Quote per booking" is too wide to sit on one line beside its label on small phones. */
+  .price-row{gap:1rem}
+  .price-row__amt{white-space:normal;text-align:right}
+}
 @media (min-width:640px){
   .price-row__dur{font-size:1.5rem}
   .price-row__amt{font-size:1.8rem}

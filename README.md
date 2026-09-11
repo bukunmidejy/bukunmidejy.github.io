@@ -1,6 +1,6 @@
 # Zenvoy Mobility — website
 
-A hand-built static site. No framework, no build step, no dependencies: plain HTML,
+On-demand chauffeur service, Lagos. A hand-built static site. No framework, no build step, no dependencies: plain HTML,
 one stylesheet, one small JavaScript file, self-hosted fonts. Hosted on GitHub Pages.
 
 ```
@@ -43,9 +43,10 @@ Current messages:
 
 | Used by | Asks for |
 | --- | --- |
-| Book a ride / Book on WhatsApp | Name, date, pickup time, pickup location, duration, passengers, vehicle preference, destination, special requirements |
-| Book the electric | Same, with vehicle preference pre-set to Electric |
+| Book a Car / Book on WhatsApp | Name, when the car is needed (now / later today / a date), pickup time, pickup location, how long, passengers, vehicle preference, destination, special requirements |
+| Book the electric | Same, with vehicle preference set to Electric |
 | Airport transfer | Same, plus airport/terminal and flight number |
+| Meetings / multi-stop day | Same, framed as a day of meetings |
 | Events | Same, plus event type and venue |
 | Corporate enquiry | Company, contact person, role, phone/email, needs, booking frequency |
 
