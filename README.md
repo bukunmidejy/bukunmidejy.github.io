@@ -123,7 +123,7 @@ tooling, so change them together:
 
 * **Phone** `+234 810 721 7858` — header of the mobile menu, footer, contact page, sticky bar
 * **WhatsApp** the same number, in every `wa.me` link
-* **Email** `mideoladeji1@gmail.com` — footer, contact page, corporate page, booking page,
+* **Email** `hellozenvoy@gmail.com` — footer, contact page, corporate page, booking page,
   the `noscript` fallback, and the `LocalBusiness` structured data
 
 The email is there mainly for corporate buyers: WhatsApp is blocked on managed laptops in
