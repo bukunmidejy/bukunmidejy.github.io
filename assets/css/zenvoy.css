@@ -44,12 +44,15 @@
   --ink-soft:#5F5B52;
 
   /* sage accent system */
-  --sage-deep:#4F5C4A;     /* text-safe accent: eyebrows, labels, numerals, focus */
-  --sage:#77856E;          /* decorative only: rules and markers, never text */
-  --sage-mist:#E4E7DE;     /* quiet-emphasis grounds */
-  --sage-whisper:#F0F2EC;  /* alternating section ground */
-  --sage-lift:#9AA893;     /* the accent, lifted to read on charcoal */
+  --sage-deep:#46573F;     /* text accent: eyebrows, labels, numerals */
+  --sage:#6F8264;          /* decorative only: rules and markers, never text */
+  --sage-mist:#DCE4D7;     /* panel and emphasis grounds */
+  --sage-whisper:#EDF1E9;  /* alternating section ground */
+  --sage-lift:#A3B39A;     /* the accent, lifted to read on charcoal */
+  --accent:#2F5147;        /* eucalyptus: primary CTAs and focus. Nothing else. */
+  --accent-hover:#3B6257;
   --bronze:#7E6537;        /* signature only: three appearances site-wide */
+  --paper:#FBF9F5;         /* ground for form controls, so they stay crisp on a tint */
 
   /* on dark */
   --d-text:#F3F0E9;
@@ -109,7 +112,7 @@ ul{margin:0 0 1.15em;padding-left:1.15em}
 li{margin-bottom:.4em}
 hr{border:0;border-top:1px solid var(--line);margin:0}
 strong{font-weight:600}
-:focus-visible{outline:2px solid var(--sage-deep);outline-offset:3px;border-radius:1px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:1px}
 ::selection{background:var(--stone);color:var(--charcoal)}
 
 .skip-link{
@@ -165,8 +168,8 @@ strong{font-weight:600}
   transition:background-color .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease);
 }
 .btn svg{flex:none}
-.btn--primary{background:var(--charcoal);color:var(--ivory);border-color:var(--charcoal)}
-.btn--primary:hover{background:#332F29;border-color:#332F29}
+.btn--primary{background:var(--accent);color:var(--ivory);border-color:var(--accent)}
+.btn--primary:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
 .btn--ghost{background:transparent;color:var(--charcoal);border-color:var(--line)}
 .btn--ghost:hover{border-color:var(--charcoal);background:rgba(28,27,24,.03)}
 .btn--light{background:var(--ivory);color:var(--charcoal);border-color:var(--ivory)}
@@ -382,7 +385,7 @@ a.price-row--link{
   transition:background-color .2s var(--ease),padding-inline .2s var(--ease);
 }
 a.price-row--link:hover{background:var(--ivory);padding-inline:.75rem;margin-inline:-.75rem}
-a.price-row--link:focus-visible{outline:2px solid var(--sage-deep);outline-offset:2px}
+a.price-row--link:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .price-row__dur{font-family:var(--serif);font-size:1.35rem;color:var(--charcoal)}
 .price-row__dur span{
   display:block;font-family:var(--sans);font-size:.75rem;letter-spacing:.14em;
@@ -558,7 +561,9 @@ body{padding-bottom:0}
 .service__for{font-size:.8125rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sage-deep)}
 .service__body p{color:var(--ink-soft);font-size:.9875rem;margin-bottom:.9rem}
 .service__use{
-  font-size:.875rem;color:var(--ink-soft);border-left:1px solid var(--line);padding-left:1rem;
+  font-size:.875rem;color:var(--ink-soft);
+  background:var(--sage-mist);border-left:2px solid var(--sage);
+  padding:.85rem 1rem;border-radius:0 var(--radius) var(--radius) 0;
 }
 .service__use strong{display:block;font-size:.6875rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sage-deep);margin-bottom:.35rem;font-weight:500}
 .service__cta{align-self:center}
@@ -653,7 +658,7 @@ body{padding-bottom:0}
 }
 .textarea{min-height:104px;line-height:1.55;resize:vertical}
 .input:hover,.select:hover,.textarea:hover{border-color:var(--ink-soft)}
-.input:focus,.select:focus,.textarea:focus{outline:2px solid var(--sage-deep);outline-offset:2px;border-color:var(--sage-deep)}
+.input:focus,.select:focus,.textarea:focus{outline:2px solid var(--accent);outline-offset:2px;border-color:var(--accent)}
 .input::placeholder,.textarea::placeholder{color:#9a958b}
 .select{
   padding-right:2.75rem;cursor:pointer;
@@ -682,7 +687,7 @@ body{padding-bottom:0}
 }
 .choice input:checked + span{background:var(--sage-whisper)}
 .choice input:checked + span::before{border-color:var(--charcoal);border-width:5px}
-.choice input:focus-visible + span{outline:2px solid var(--sage-deep);outline-offset:-2px}
+.choice input:focus-visible + span{outline:2px solid var(--accent);outline-offset:-2px}
 .choice:hover span{background:var(--sage-whisper)}
 
 /* estimate panel */
@@ -694,6 +699,14 @@ body{padding-bottom:0}
 .estimate__label{font-size:.6875rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sage-deep)}
 .estimate__value{font-family:var(--serif);font-size:1.5rem;color:var(--charcoal)}
 .estimate__note{flex:1 0 100%;font-size:.8125rem;color:var(--ink-soft);margin:0}
+
+/* the "what happens next" column is a panel, not a bare column */
+.book-aside{
+  background:var(--sage-mist);border:1px solid var(--line-soft);
+  border-radius:var(--radius);padding:1.6rem 1.35rem;align-self:start;
+}
+@media (min-width:900px){ .book-aside{padding:2rem 1.85rem} }
+.book-aside .step{border-top-color:rgba(35,33,25,.11)}
 
 /* errors */
 .field--error .input,.field--error .select,.field--error .textarea,.field--error .choices{border-color:#8c3b2e}
