@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /cv.html
+Disallow: /Gold.html
+Disallow: /form.html
+
+Sitemap: https://bukunmidejy.github.io/sitemap.xml
