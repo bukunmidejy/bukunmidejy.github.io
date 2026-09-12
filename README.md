@@ -47,18 +47,28 @@ that **Zenvoy has not received it yet**.
    ```
 
    The key is designed to be public in client-side code, so it is safe in a public repo.
-3. Commit, push, and **send yourself a test booking**. Then **whitelist the sender** so it
-   never lands in spam, and set a **cc address** in your Web3Forms settings.
+3. Commit, push, and **send yourself a test booking** to prove it works end to end.
+4. In your email, add a filter for it: **never send to spam**, apply a `Zenvoy bookings`
+   label, and mark it important. A Gmail filter does all three and costs nothing.
 
-### Why Web3Forms, and the one thing to watch
+Everything above is on the free plan. The form sends only `access_key`, `subject`,
+`from_name` and a honeypot field — no paid feature is used, and none is needed.
 
-Roughly 250 submissions a month on the free tier against Formspree's ~50, and no account to
-create. Free tiers change, so check the current numbers when you sign up.
+### Email is the notification, not the booking record
 
-**Its free tier does not store submissions — the email is the only copy.** That is the
-reason for the cc address and the whitelisting above. If you would rather have a dashboard
-record and can live with the lower monthly limit, use Formspree, Basin or Getform instead:
-put the form URL in `CUSTOM_ENDPOINT` and leave `WEB3FORMS_KEY` empty. Nothing else changes.
+The free plan emails you each request and does not store it. So treat that email as a
+**doorbell, not a filing cabinet**: it tells you a request has arrived. The moment you act
+on one, put it wherever you actually track bookings — a notebook, a spreadsheet, your phone
+calendar. Do not let the inbox be the only place a live booking exists.
+
+Two habits make this safe, both free: the spam filter above, so a request cannot vanish
+quietly, and the reference number on every request (`ZV-260912-9TAE`), which gives you and
+the customer a shared handle for it.
+
+Roughly 250 submissions a month on the free tier, against Formspree's ~50, and no account to
+create. Free tiers change, so check the current numbers when you sign up. If you later want
+a service that keeps a dashboard record, put its URL in `CUSTOM_ENDPOINT` and leave
+`WEB3FORMS_KEY` empty — nothing else changes.
 
 ### What the customer sees, in each case
 

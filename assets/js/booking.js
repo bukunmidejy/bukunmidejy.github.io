@@ -12,9 +12,13 @@
  *    bookings, and they email you an access key (a UUID).
  * 2. Paste it into WEB3FORMS_KEY below. That is the whole setup: the key is
  *    designed to be public in client-side code, so it is safe in a public repo.
- * 3. Send yourself a test booking, and whitelist the sender so it never lands
- *    in spam. Web3Forms' free tier does NOT store submissions — the email is
- *    the only copy — so also set a cc address in your Web3Forms settings.
+ * 3. Send yourself a test booking, and add an email filter so it never lands in
+ *    spam. The free plan emails each request and does not store it, so treat
+ *    that email as a doorbell, not a filing cabinet: move a booking into
+ *    wherever you actually track bookings as soon as you act on it.
+ *
+ * Everything here works on the free plan. The only fields sent beyond the
+ * request itself are access_key, subject, from_name and a honeypot.
  *
  * Prefer a service that keeps a dashboard record (Formspree, Basin, Getform)?
  * Put its URL in CUSTOM_ENDPOINT instead and leave WEB3FORMS_KEY empty.
