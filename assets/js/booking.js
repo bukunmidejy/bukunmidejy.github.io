@@ -91,10 +91,10 @@
     if (v === "electric" && PRICES[d]) {
       box.hidden = false;
       $("estimate-value").textContent = naira(PRICES[d]);
-      $("estimate-label").textContent = "Estimated price · " + d + " hours";
+      $("estimate-label").textContent = "Published rate · " + d + " hours";
       $("estimate-note").textContent =
-        "The published rate for the Geely Geometry E. It is an estimate on this request, " +
-        "not a confirmed price: Zenvoy confirms availability and the final price before anything is booked.";
+        "The published rate for the Geely Geometry E. Your booking is confirmed once Zenvoy has checked " +
+        "availability and confirmed the final price — nothing is charged before that.";
     } else if (v && v !== "electric") {
       box.hidden = false;
       $("estimate-value").textContent = "Quoted";
@@ -157,6 +157,7 @@
     }
     [["date", "Tell us which day you need the car."],
      ["time", "Tell us what time the pickup should be."],
+     ["duration", "Tell us how long you need the car, or pick “Not sure — advise me”."],
      ["pickup", "We need a pickup location."],
      ["name", "Tell us your name."],
      ["phone", "We need a phone number to confirm your booking."]].forEach(function (pair) {
@@ -204,7 +205,7 @@
       date: $("date").value,
       pickup_time: $("time").value,
       duration: d ? (PRICES[d] ? d + " hours" : d) : "",
-      estimated_price: v === "electric" && PRICES[d] ? naira(PRICES[d]) + " (estimate, subject to confirmation)"
+      estimated_price: v === "electric" && PRICES[d] ? naira(PRICES[d]) + " (published rate, subject to availability)"
                                                      : "Quoted on confirmation",
       pickup_location: $("pickup").value.trim(),
       itinerary: $("itinerary").value.trim(),
