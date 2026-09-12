@@ -137,15 +137,22 @@ email on it, find and replace the address across the site and it is done.
 
 ## Prices
 
-The booking form shows the published electric rate as an **estimate** once a customer picks
-the electric vehicle and a 2/4/8/12-hour duration; everything else reads "Quoted". If you
-change the rates, change them in `assets/js/booking.js` (the `PRICES` map) as well as the
-two places below, or the form will quote stale prices.
+The booking form shows the **published rate** once a customer picks the electric vehicle
+and a 2/4/8/12-hour duration; everything else reads "Quoted". The rate is not called an
+estimate: it is the published price, and what stays subject to confirmation is
+availability, which the note under the panel says. If you change the rates, change them in
+`assets/js/booking.js` (the `PRICES` map) as well as the two places below, or the form will
+quote stale prices.
 
 Electric rates appear in two places: `/electric/index.html` (full table) and
-`index.html` (homepage preview). The launch-offer line appears in the black announcement
-bar at the top of every page — search for `Launch offer` to remove or change it when the
-first five bookings are gone.
+`index.html` (homepage preview). The launch offer reads "₦5,000 off your first booking.
+Limited launch availability." and appears in three places: the black announcement bar at
+the top of every page, the homepage electric notice and the Electric page notice — search
+for `Launch offer` and `off your first booking` to change or remove all of them together.
+It deliberately does not publish a countdown: nothing on a static site can decrement one,
+so a public "first 5 bookings" would go stale the moment booking six came in. Zenvoy
+applies the discount when confirming the booking, so customers are never asked to claim
+it.
 
 ## SEO
 
