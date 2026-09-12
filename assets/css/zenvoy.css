@@ -695,6 +695,9 @@ body{padding-bottom:0}
   background:#fbf3f1;font-size:.9375rem;color:#6f2f24;margin-bottom:1.75rem;
 }
 
+/* honeypot — off-screen rather than display:none, which some bots skip */
+.hp{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+
 .book-submit{border-top:1px solid var(--line);padding-top:2rem;margin-top:.5rem}
 .book-submit .btn{width:100%}
 @media (min-width:560px){ .book-submit .btn{width:auto;min-width:260px} }

@@ -5,23 +5,33 @@
  * a structured request; Zenvoy confirms availability and the final price.
  *
  * ---------------------------------------------------------------------------
- * WHERE REQUESTS GO — read this before launch.
+ * WHERE REQUESTS GO — three minutes of setup, and the site becomes the
+ * booking channel rather than a nicer way to write a WhatsApp message.
  *
- * This site is static (GitHub Pages), so there is no server to receive a form.
- * Until an endpoint is set below, a submitted request is handed to WhatsApp
- * fully written out, and the page says plainly that it has not reached Zenvoy
- * until the customer sends it.
+ * 1. Go to https://web3forms.com, enter the address that should receive
+ *    bookings, and they email you an access key (a UUID).
+ * 2. Paste it into WEB3FORMS_KEY below. That is the whole setup: the key is
+ *    designed to be public in client-side code, so it is safe in a public repo.
+ * 3. Send yourself a test booking, and whitelist the sender so it never lands
+ *    in spam. Web3Forms' free tier does NOT store submissions — the email is
+ *    the only copy — so also set a cc address in your Web3Forms settings.
  *
- * To receive requests on the site instead, create a free form endpoint
- * (formspree.io, web3forms.com, basin, getform — any of them takes minutes)
- * and paste the URL into ENDPOINT. Nothing else needs to change: the form will
- * POST the request as JSON and show "Request received" on success.
+ * Prefer a service that keeps a dashboard record (Formspree, Basin, Getform)?
+ * Put its URL in CUSTOM_ENDPOINT instead and leave WEB3FORMS_KEY empty.
+ *
+ * Until one of them is set, the form hands the finished request to WhatsApp and
+ * says plainly that Zenvoy has not received it yet. If a submission fails, the
+ * customer is told it failed — never that it was received.
  * --------------------------------------------------------------------------- */
 (function () {
   "use strict";
 
-  var ENDPOINT = "";                      // <-- paste your form endpoint URL here
+  var WEB3FORMS_KEY = "";        // <-- paste the access key Web3Forms emails you
+  var CUSTOM_ENDPOINT = "";      // <-- or a Formspree/Basin/Getform URL instead
   var WHATSAPP = "2348107217858";
+  var TIMEOUT_MS = 15000;
+
+  var ENDPOINT = CUSTOM_ENDPOINT || (WEB3FORMS_KEY ? "https://api.web3forms.com/submit" : "");
 
   var form = document.getElementById("booking-form");
   if (!form) return;
@@ -227,8 +237,14 @@
     return lines.join("\n");
   }
 
-  /* ---- confirmation ------------------------------------------------------ */
-  function show(r, delivered) {
+  /* ---- confirmation ------------------------------------------------------
+     Three outcomes, and they are never blurred together:
+       sent          the endpoint accepted it — "Booking request received"
+       failed        the endpoint was tried and did not accept it — say so
+       unconfigured  no endpoint set up yet — hand off to WhatsApp
+     A failure must never read as a success: a customer who thinks Zenvoy has
+     their booking, when Zenvoy does not, is the worst outcome this page has. */
+  function show(r, state) {
     var panel = $("booking-result");
     var rows = [
       ["Vehicle", r.vehicle + (r.preferred_vehicle ? "\n" + r.preferred_vehicle : "")],
@@ -242,15 +258,27 @@
     }).join("");
 
     var wa = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(asText(r));
-    var head, body, actions;
+    var eyebrow, head, body, actions;
 
-    if (delivered) {
-      head = "Request received.";
+    if (state === "sent") {
+      eyebrow = "Received";
+      head = "Booking request received.";
       body = "<p>Zenvoy will check vehicle and chauffeur availability and confirm your booking and " +
              "final price. Your booking is not confirmed until we come back to you.</p>";
       actions = '<a class="btn btn--ghost" href="' + wa + '" target="_blank" rel="noopener">' +
                 "Add something on WhatsApp</a>";
+    } else if (state === "failed") {
+      eyebrow = "Not submitted";
+      head = "We could not submit your request.";
+      body = "<p><strong>Zenvoy has not received this.</strong> Something went wrong between your " +
+             "browser and us &mdash; it may be your connection. Your details are saved below and on the " +
+             "WhatsApp button, so nothing is lost. Send it on WhatsApp and it reaches us straight away, " +
+             "or try submitting again.</p>";
+      actions = '<a class="btn btn--primary" href="' + wa + '" target="_blank" rel="noopener">' +
+                "Send this request on WhatsApp</a>" +
+                '<button type="button" class="btn btn--ghost" id="retry-request">Try submitting again</button>';
     } else {
+      eyebrow = "Ready to send";
       head = "Your request is ready to send.";
       body = "<p><strong>Zenvoy has not received this yet.</strong> Send it on WhatsApp and it reaches " +
              "us with every detail and your reference attached. We will then check vehicle and chauffeur " +
@@ -262,7 +290,7 @@
 
     panel.innerHTML =
       '<div class="receipt">' +
-      '<p class="eyebrow">' + (delivered ? "Received" : "Ready to send") + "</p>" +
+      '<p class="eyebrow">' + eyebrow + "</p>" +
       "<h2>" + head + "</h2>" +
       '<p class="receipt__ref">' + r.reference + "</p>" +
       body +
@@ -276,6 +304,16 @@
     panel.hidden = false;
     panel.focus();
     panel.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    var retry = $("retry-request");
+    if (retry) {
+      retry.addEventListener("click", function () {
+        panel.hidden = true;
+        panel.innerHTML = "";
+        form.hidden = false;
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
 
     var copy = $("copy-request");
     if (copy) {
@@ -296,22 +334,53 @@
   /* ---- submit ------------------------------------------------------------ */
   form.addEventListener("submit", function (e) {
     e.preventDefault();
+
+    // Honeypot: a field no person can see or tab into. Anything that fills it in
+    // is a bot, and we drop the submission without comment.
+    var trap = $("botcheck");
+    if (trap && trap.value) return;
+
     var r = collect();
     if (!r) return;
 
     var button = $("booking-submit");
-    if (!ENDPOINT) { show(r, false); return; }
+
+    if (!ENDPOINT) { show(r, "unconfigured"); return; }
+
+    var payload = {};
+    Object.keys(r).forEach(function (k) { payload[k] = r[k]; });
+    if (WEB3FORMS_KEY) {
+      payload.access_key = WEB3FORMS_KEY;
+      payload.subject = "Zenvoy booking request " + r.reference + " — " + r.name;
+      payload.from_name = "Zenvoy website";
+      payload.botcheck = "";
+    }
 
     button.disabled = true;
     button.textContent = "Sending…";
+
+    // A request that hangs must not leave the customer staring at "Sending…".
+    var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var timer = setTimeout(function () { if (controller) controller.abort(); }, TIMEOUT_MS);
+
     fetch(ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify(r)
+      body: JSON.stringify(payload),
+      signal: controller ? controller.signal : undefined
     }).then(function (res) {
-      show(r, res.ok);
+      clearTimeout(timer);
+      // Some services answer 200 with {"success": false}; treat that as a failure.
+      return res.json().then(function (data) {
+        return res.ok && data && data.success !== false;
+      }, function () {
+        return res.ok;
+      });
+    }).then(function (ok) {
+      show(r, ok ? "sent" : "failed");
     }).catch(function () {
-      show(r, false);
+      clearTimeout(timer);
+      show(r, "failed");
     }).then(function () {
       button.disabled = false;
       button.textContent = "Send booking request";

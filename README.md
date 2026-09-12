@@ -32,31 +32,47 @@ one of them, change it in all nine files (search for `<header class="site-header
 
 ## Where booking requests go — the one thing to set up
 
-The site is static, so there is no server to receive a form. Until you configure an
-endpoint, a submitted request is handed to WhatsApp fully written out, and the page says
-plainly that **Zenvoy has not received it yet** until the customer presses send.
+The site is static, so there is no server to receive a form. Until you paste in an access
+key, a submitted request is handed to WhatsApp fully written out and the page says plainly
+that **Zenvoy has not received it yet**.
 
-To take requests on the site instead:
+### Setting it up (about three minutes)
 
-1. Create a free form endpoint at [formspree.io](https://formspree.io),
-   [web3forms.com](https://web3forms.com), basin or getform. It takes a few minutes and
-   they email you each submission.
-2. Open `assets/js/booking.js` and paste the URL into the first line of configuration:
+1. Go to **[web3forms.com](https://web3forms.com)**, enter the address that should receive
+   bookings, and they email you an **access key** (a UUID). No password, no dashboard.
+2. Open `assets/js/booking.js` and paste it into the first line of configuration:
 
    ```js
-   var ENDPOINT = "https://formspree.io/f/xxxxxxx";
+   var WEB3FORMS_KEY = "your-access-key-here";
    ```
 
-3. That is the whole change. The form then POSTs the request as JSON and the customer sees
-   "Request received" instead of the WhatsApp hand-off.
+   The key is designed to be public in client-side code, so it is safe in a public repo.
+3. Commit, push, and **send yourself a test booking**. Then **whitelist the sender** so it
+   never lands in spam, and set a **cc address** in your Web3Forms settings.
 
-Test it once with a real submission before you rely on it. If the POST fails for any
-reason, the form falls back to the WhatsApp hand-off rather than losing the request.
+### Why Web3Forms, and the one thing to watch
 
-**This is a request-to-confirm flow, not instant booking.** Nothing on the site checks live
-availability, assigns a vehicle or takes payment. Every request gets a reference number
-(`ZV-260912-4KPQ`), and the copy says throughout that the booking is confirmed only when
-Zenvoy confirms availability and the final price.
+Roughly 250 submissions a month on the free tier against Formspree's ~50, and no account to
+create. Free tiers change, so check the current numbers when you sign up.
+
+**Its free tier does not store submissions — the email is the only copy.** That is the
+reason for the cc address and the whitelisting above. If you would rather have a dashboard
+record and can live with the lower monthly limit, use Formspree, Basin or Getform instead:
+put the form URL in `CUSTOM_ENDPOINT` and leave `WEB3FORMS_KEY` empty. Nothing else changes.
+
+### What the customer sees, in each case
+
+| Outcome | What the page says |
+| --- | --- |
+| Submitted successfully | **"Booking request received."** plus the reference, and that the booking is not confirmed until Zenvoy comes back |
+| Submission failed (any reason) | **"We could not submit your request."** — states that Zenvoy has *not* received it, offers WhatsApp, and offers a retry that restores the filled-in form |
+| No key configured yet | **"Your request is ready to send."** — hands off to WhatsApp |
+
+A failure is never dressed up as a success. That includes the likeliest misconfiguration:
+a wrong access key, which returns HTTP 200 with `success: false` and is treated as a failure.
+
+Requests time out after 15 seconds rather than leaving the customer looking at "Sending…",
+and a hidden honeypot field drops bot submissions without bothering anyone.
 
 ## Changing the WhatsApp number or the pre-filled messages
 
