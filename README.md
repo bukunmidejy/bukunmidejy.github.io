@@ -116,6 +116,25 @@ All photography is of Zenvoy's own Geely Geometry E. Other vehicle categories (s
 SUVs, premium) are text-led until real photographs of those vehicles exist — see
 `assets/img/README.md` before adding any.
 
+## Contact details
+
+Three places carry contact details, and they are generated from constants in the site
+tooling, so change them together:
+
+* **Phone** `+234 810 721 7858` — header of the mobile menu, footer, contact page, sticky bar
+* **WhatsApp** the same number, in every `wa.me` link
+* **Email** `mideoladeji1@gmail.com` — footer, contact page, corporate page, booking page,
+  the `noscript` fallback, and the `LocalBusiness` structured data
+
+The email is there mainly for corporate buyers: WhatsApp is blocked on managed laptops in
+plenty of Lagos banks, law firms and consultancies, and without an email address those
+enquiries simply do not happen. Mailto links carry a subject line so enquiries are easy to
+filter: "Zenvoy enquiry", "Zenvoy booking enquiry", "Zenvoy Corporate enquiry".
+
+**Worth upgrading when you can.** A personal Gmail address reads differently to a corporate
+buyer than `hello@zenvoymobility.com` does. You already own the domain; when you set up
+email on it, find and replace the address across the site and it is done.
+
 ## Prices
 
 The booking form shows the published electric rate as an **estimate** once a customer picks
