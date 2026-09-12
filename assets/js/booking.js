@@ -98,10 +98,11 @@
     } else if (v && v !== "electric") {
       box.hidden = false;
       $("estimate-value").textContent = "Quoted";
-      $("estimate-label").textContent = "Price";
+      $("estimate-label").textContent = "Hourly rate";
       $("estimate-note").textContent =
-        "Sedans, SUVs and premium vehicles are quoted per booking. Zenvoy comes back with the " +
-        "price once availability is confirmed, before anything is booked.";
+        "Sedans, SUVs and premium vehicles are booked by the hour too. They are quoted per booking " +
+        "rather than published, because running costs differ from vehicle to vehicle. Zenvoy comes " +
+        "back with the price once availability is confirmed, before anything is booked.";
     } else {
       box.hidden = true;
     }
