@@ -334,6 +334,7 @@ strong{font-weight:600}
 @media (min-width:900px){
   .split{grid-template-columns:1fr 1fr;gap:clamp(2.5rem,5vw,5rem)}
   .split--wide-text{grid-template-columns:1.08fr .92fr}
+  .split--form{grid-template-columns:1.22fr .78fr;gap:clamp(2.5rem,5vw,5.5rem)}
   .split--reverse .split__media{order:2}
 }
 
@@ -369,6 +370,13 @@ strong{font-weight:600}
   display:flex;align-items:baseline;justify-content:space-between;gap:1.5rem;
   padding:1.15rem 0;border-bottom:1px solid var(--line-soft);
 }
+/* a price row that opens the request form with that duration already chosen */
+a.price-row--link{
+  text-decoration:none;color:inherit;
+  transition:background-color .2s var(--ease),padding-inline .2s var(--ease);
+}
+a.price-row--link:hover{background:var(--ivory);padding-inline:.75rem;margin-inline:-.75rem}
+a.price-row--link:focus-visible{outline:2px solid var(--olive);outline-offset:2px}
 .price-row__dur{font-family:var(--serif);font-size:1.35rem;color:var(--charcoal)}
 .price-row__dur span{
   display:block;font-family:var(--sans);font-size:.75rem;letter-spacing:.14em;
@@ -593,7 +601,7 @@ body{padding-bottom:0}
 }
 .nowrap{white-space:nowrap}
 
-/* 9. Motion --------------------------------------------------------------- */
+/* 9. Motion (see section 10 below for the booking form) --------------------------------------------------------------- */
 /* Reveal-on-scroll only runs when JS is on (html.js is set by an inline script). */
 .js [data-reveal]{opacity:0;transform:translateY(14px)}
 .js [data-reveal].is-in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
@@ -606,3 +614,103 @@ body{padding-bottom:0}
   }
   [data-reveal]{opacity:1;transform:none}
 }
+
+/* 10. Booking request form ------------------------------------------------ */
+/* Editorial, not SaaS: hairlines instead of boxes, serif section headings,
+   and touch targets that clear 48px on a phone. */
+
+.book-form{max-width:720px}
+.book-step{border-top:1px solid var(--line);padding-block:2rem}
+.book-step:first-of-type{border-top:0;padding-top:0}
+.book-step__head{display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:baseline;margin-bottom:1.6rem}
+.book-step__num{font-family:var(--serif);font-size:1.05rem;color:var(--gold-text);line-height:1}
+.book-step h2{font-size:clamp(1.3rem,3vw,1.65rem);margin:0}
+.book-step__hint{font-size:.9375rem;color:var(--ink-soft);margin:.35rem 0 0;grid-column:2}
+
+.field{margin-bottom:1.5rem}
+.field:last-child{margin-bottom:0}
+.field > label,.field__legend{
+  display:block;font-size:.6875rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--olive);margin-bottom:.6rem;
+}
+.field__note{display:block;font-size:.8125rem;color:var(--ink-soft);margin-top:.45rem;letter-spacing:0;text-transform:none}
+.field--req > label::after,.field--req .field__legend::after{content:" *";color:var(--gold-text);letter-spacing:0}
+
+.input,.select,.textarea{
+  width:100%;min-height:52px;padding:.85rem 1rem;
+  font-family:var(--sans);font-size:1rem;color:var(--ink);
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  transition:border-color .2s var(--ease);
+  -webkit-appearance:none;appearance:none;
+}
+.textarea{min-height:104px;line-height:1.55;resize:vertical}
+.input:hover,.select:hover,.textarea:hover{border-color:var(--ink-soft)}
+.input:focus,.select:focus,.textarea:focus{outline:2px solid var(--olive);outline-offset:2px;border-color:var(--olive)}
+.input::placeholder,.textarea::placeholder{color:#9a958b}
+.select{
+  padding-right:2.75rem;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,var(--ink-soft) 50%),
+                   linear-gradient(135deg,var(--ink-soft) 50%,transparent 50%);
+  background-position:calc(100% - 20px) calc(50% + 2px),calc(100% - 14px) calc(50% + 2px);
+  background-size:6px 6px,6px 6px;background-repeat:no-repeat;
+}
+.field-row{display:grid;gap:1.5rem}
+@media (min-width:560px){ .field-row--2{grid-template-columns:1fr 1fr} }
+
+/* choice list: radio rows that read as a considered list, not chips */
+.choices{display:grid;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.choice{position:relative;display:block;border-top:1px solid var(--line-soft)}
+.choice:first-child{border-top:0}
+.choice input{position:absolute;opacity:0;width:1px;height:1px}
+.choice span{
+  display:block;min-height:56px;padding:1rem 1rem 1rem 2.9rem;cursor:pointer;
+  font-size:1rem;line-height:1.35;background:var(--paper);
+  transition:background-color .2s var(--ease);
+}
+.choice span small{display:block;font-size:.8125rem;color:var(--ink-soft);margin-top:.2rem}
+.choice span::before{
+  content:"";position:absolute;left:1.05rem;top:1.35rem;width:15px;height:15px;
+  border:1px solid var(--ink-soft);border-radius:50%;background:var(--paper);
+}
+.choice input:checked + span{background:var(--ivory-deep)}
+.choice input:checked + span::before{border-color:var(--charcoal);border-width:5px}
+.choice input:focus-visible + span{outline:2px solid var(--olive);outline-offset:-2px}
+.choice:hover span{background:var(--ivory-deep)}
+
+/* estimate panel */
+.estimate{
+  display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.5rem 1.5rem;
+  padding:1.1rem 1.25rem;background:var(--ivory-deep);
+  border:1px solid var(--line);border-left:2px solid var(--gold);
+}
+.estimate__label{font-size:.6875rem;letter-spacing:.16em;text-transform:uppercase;color:var(--olive)}
+.estimate__value{font-family:var(--serif);font-size:1.5rem;color:var(--charcoal)}
+.estimate__note{flex:1 0 100%;font-size:.8125rem;color:var(--ink-soft);margin:0}
+
+/* errors */
+.field--error .input,.field--error .select,.field--error .textarea,.field--error .choices{border-color:#8c3b2e}
+.field__error{display:block;font-size:.8125rem;color:#8c3b2e;margin-top:.45rem;letter-spacing:0;text-transform:none}
+.form-error{
+  padding:1rem 1.25rem;border:1px solid #8c3b2e;border-left-width:2px;
+  background:#fbf3f1;font-size:.9375rem;color:#6f2f24;margin-bottom:1.75rem;
+}
+
+/* honeypot — off-screen rather than display:none, which some bots skip */
+.hp{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+
+.book-submit{border-top:1px solid var(--line);padding-top:2rem;margin-top:.5rem}
+.book-submit .btn{width:100%}
+@media (min-width:560px){ .book-submit .btn{width:auto;min-width:260px} }
+.book-submit .fineprint{margin-top:1rem;max-width:52ch}
+
+/* confirmation */
+.receipt{border-top:1px solid var(--line);padding-top:2rem}
+.receipt__ref{
+  display:inline-block;font-family:var(--serif);font-size:1.6rem;letter-spacing:.06em;
+  padding:.5rem 1rem;border:1px solid var(--line);background:var(--ivory-deep);margin-bottom:1.5rem;
+}
+.receipt dl{display:grid;gap:0;border-top:1px solid var(--line-soft);margin:0 0 2rem}
+.receipt .row{display:grid;gap:.15rem;padding:.85rem 0;border-bottom:1px solid var(--line-soft)}
+@media (min-width:560px){ .receipt .row{grid-template-columns:.38fr 1fr;gap:1.5rem;align-items:baseline} }
+.receipt dt{font-size:.6875rem;letter-spacing:.16em;text-transform:uppercase;color:var(--olive)}
+.receipt dd{margin:0;font-size:1rem;white-space:pre-line}
