@@ -30,7 +30,7 @@
 (function () {
   "use strict";
 
-  var WEB3FORMS_KEY = "";        // <-- paste the access key Web3Forms emails you
+  var WEB3FORMS_KEY = "e18d911f-b598-48f7-a0a0-805310834ee4";   // Web3Forms, free plan
   var CUSTOM_ENDPOINT = "";      // <-- or a Formspree/Basin/Getform URL instead
   var WHATSAPP = "2348107217858";
   var TIMEOUT_MS = 15000;
